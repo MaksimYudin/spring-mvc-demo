@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student registration form</title>
+</head>
+<body>
+
+    <form th:action="@{processForm}" th:object="${student}">
+        <label for="firstName">First name:</label>
+        <input type="text" th:field="*{firstName}" id="firstName">
+        <br/>
+
+        <label for="lastName">Last name:</label>
+        <input type="text" th:field="*{lastName}" id="lastName">
+        <br/>
+
+        Country:
+        <select th:field="*{country}" id="country">
+            <option th:each="countryOption : *{countryOptions.entrySet()}"
+                    th:value="${countryOption.key}"
+                    th:text="${countryOption.value}">
+            </option>
+        </select>
+        <br/>
+
+        Language:
+        <ul>
+            <li th:each="language : *{languageOptions}">
+                <input type="radio" th:field="*{favoriteLanguage}" th:value="${language}" id="${language}" />
+                <label th:for="${language}" th:text="${language}">Wireframe</label>
+            </li>
+        </ul>
+
+        Operation system:
+        <ul>
+            <li th:each="os : *{operationSystemsOptions}">
+                <input type="checkbox" th:field="*{operationSystems}" th:value="${os}" id="${os}" />
+                <label th:for="${os}" th:text="${os}">Wireframe</label>
+            </li>
+        </ul>
+
+        <input type="submit" value="Create">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm student</title>
+</head>
+<body>
+    Student confirmed: <p th:text="${student.firstName} + ' ' + ${student.lastName}">VALUE</p>
+    Country: <p th:text="${student.country}">VALUE</p>
+    Favorite language: <p th:text="${student.favoriteLanguage}"></p>
+    Operation system:
+    <ul>
+        <li th:each="os : ${student.operationSystems}">
+            <label th:text="${os}">Wireframe</label>
+        </li>
+    </ul>
+</body>
+</html>
