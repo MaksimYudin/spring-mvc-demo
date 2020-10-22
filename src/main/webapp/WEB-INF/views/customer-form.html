@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add customer</title>
+    <style>
+        .error {color:red}
+    </style>
+</head>
+<body>
+
+    <form th:action="@{processForm}" th:object="${customer}">
+        <label th:for="firstName">First name:</label>
+        <input type="text" th:field="*{firstName}" id="firstName">
+        <br/>
+
+
+        <label th:for="lastName">Last name(*):</label>
+        <input type="text" th:field="*{lastName}" id="lastName">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+
+        <br/>
+        <input type="submit" value="Create">
+    </form>
+
+</body>
+</html>
