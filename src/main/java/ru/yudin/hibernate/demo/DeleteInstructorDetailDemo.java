@@ -7,7 +7,7 @@ import ru.yudin.hibernate.demo.entity.Instructor;
 import ru.yudin.hibernate.demo.entity.InstructorDetail;
 
 
-public class GetInstructorDemo {
+public class DeleteInstructorDetailDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration()
@@ -20,14 +20,15 @@ public class GetInstructorDemo {
 
         try {
 
-            int id = 2;
+            int id = 3;
 
             session.beginTransaction();
 
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 
-            System.out.println(instructorDetail);
-            System.out.println(instructorDetail.getInstructor());
+            instructorDetail.getInstructor().setInstructorDetail(null);
+
+            session.delete(instructorDetail);
 
             session.getTransaction().commit();
 
