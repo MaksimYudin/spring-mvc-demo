@@ -8,15 +8,16 @@
           <unit-entry name="hibernate_1to1uni.cfg.xml" />
         </datasource-map>
         <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/resources/hb-01-one-to-one-uni.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/resources/hb-03-one-to-many.cfg.xml" />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/resources/hibernate.cfg.xml" />
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/resources/hibernate_1to1uni.cfg.xml" />
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="spring-mvc-demo" value="4c630bd6-0648-4698-94e4-c3eaefae7bd7" />
+          <factory-entry name="spring-mvc-demo" value="b90c2c52-ae64-4ff3-a5a0-8c5030fbddd5" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

@@ -11,7 +11,7 @@ public class GetInstructorDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration()
-                                        .configure("hibernate_1to1uni.cfg.xml")
+                                        .configure("hb-01-one-to-one-uni.cfg.xml")
                                         .addAnnotatedClass(Instructor.class)
                                         .addAnnotatedClass(InstructorDetail.class)
                                         .buildSessionFactory();

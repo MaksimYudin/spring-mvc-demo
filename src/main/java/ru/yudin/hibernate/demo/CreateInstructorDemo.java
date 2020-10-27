@@ -3,6 +3,7 @@ package ru.yudin.hibernate.demo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import ru.yudin.hibernate.demo.entity.Course;
 import ru.yudin.hibernate.demo.entity.Instructor;
 import ru.yudin.hibernate.demo.entity.InstructorDetail;
 import ru.yudin.hibernate.demo.entity.Student;
@@ -12,7 +13,7 @@ public class CreateInstructorDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration()
-                                        .configure("hibernate_1to1uni.cfg.xml")
+                                        .configure("hb-01-one-to-one-uni.cfg.xml")
                                         .addAnnotatedClass(Instructor.class)
                                         .addAnnotatedClass(InstructorDetail.class)
                                         .buildSessionFactory();
@@ -35,7 +36,11 @@ public class CreateInstructorDemo {
             session.getTransaction().commit();
 
         } finally {
+
+            session.close();
+
             sessionFactory.close();
+
         }
 
     }
