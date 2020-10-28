@@ -11,7 +11,7 @@ public class DeleteInstructorDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration()
-                                        .configure("hb-01-one-to-one-uni.cfg.xml")
+                                        .configure("hibernate.cfg.xml")
                                         .addAnnotatedClass(Instructor.class)
                                         .addAnnotatedClass(InstructorDetail.class)
                                         .buildSessionFactory();

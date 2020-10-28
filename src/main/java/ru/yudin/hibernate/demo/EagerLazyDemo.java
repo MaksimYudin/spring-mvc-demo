@@ -13,7 +13,7 @@ public class EagerLazyDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration()
-                                        .configure("hb-03-one-to-many.cfg.xml")
+                                        .configure("hibernate.cfg.xml")
                                         .addAnnotatedClass(Instructor.class)
                                         .addAnnotatedClass(InstructorDetail.class)
                                         .addAnnotatedClass(Course.class)
