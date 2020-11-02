@@ -78,8 +78,6 @@
 	<!-- Add support for reading web resources: css, images, js, etc ... -->
 	<mvc:resources location="/WEB-INF/resources/" mapping="/resources/**"></mvc:resources>
 	
-	
-	
 </beans>
 
 
