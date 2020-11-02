@@ -4,8 +4,8 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hb-03-one-to-many.cfg.xml" />
           <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="sessionFactory" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/resources/hb-01-one-to-one-uni.cfg.xml" />
@@ -16,6 +16,7 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="spring-mvc-demo" value="3abcf71c-393d-4f80-a421-8d3cbd54e6c3" />
         </datasource-mapping>
