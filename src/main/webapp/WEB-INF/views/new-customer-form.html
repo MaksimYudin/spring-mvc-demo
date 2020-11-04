@@ -16,6 +16,7 @@
 
     <div id="container">
         <form th:action="@{saveCustomer}" th:object="${customer}" th:method="POST">
+            <input type="hidden" th:value="${customer.id}" name="id" />
             <table>
                 <tbody>
                     <tr>

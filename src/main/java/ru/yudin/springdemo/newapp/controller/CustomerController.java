@@ -3,10 +3,7 @@ package ru.yudin.springdemo.newapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.yudin.springdemo.newapp.dao.CustomerDAO;
 import ru.yudin.springdemo.newapp.entity.Customer;
 import ru.yudin.springdemo.newapp.service.CustomerService;
@@ -46,6 +43,25 @@ public class CustomerController {
     public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 
         customerService.saveCustomer(customer);
+
+        return "redirect:/customer/list";
+
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("customerId") int id, Model model) {
+
+        Customer customer = customerService.getCustomer(id);
+
+        model.addAttribute("customer", customer);
+
+        return "new-customer-form";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("customerId") int id) {
+
+        customerService.deleteCustomer(id);
 
         return "redirect:/customer/list";
 
