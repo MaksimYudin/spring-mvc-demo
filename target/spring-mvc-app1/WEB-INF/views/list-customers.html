@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"-->
 <head>
     <meta charset="UTF-8">
     <title>Customer list</title>
     <link th:href="@{/resources/css/style.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
+
+<span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="principal.username"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+            </span>
+<br/>
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
+<div sec:authorize="hasRole('ROLE_rol1')">
+    This content is only shown to administrators.
+</div>
+
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Logout" />
+    </form>
 
     <div id="wrapper">
         <div id="header">
@@ -44,6 +65,14 @@
             </table>
         </div>
     </div>
+
+<br/>
+
+<p>
+    <a href="/leaders">only for Leaders</a>
+    <br/>
+    <a href="/systems">only for Admins</a>
+</p>
 
 </body>
 </html>
