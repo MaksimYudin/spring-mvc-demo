@@ -1,5 +1,6 @@
 package ru.yudin.springdemo.newapp.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,19 +8,28 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private DataSource securityDataSource;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
+        auth.jdbcAuthentication().dataSource(securityDataSource);
+        /*
         User.UserBuilder users = User.withDefaultPasswordEncoder();
 
         auth.inMemoryAuthentication()
                 .withUser(users.username("max1").password("pass1").roles("role1"))
                 .withUser(users.username("max2").password("pass2").roles("role1", "role2"))
                 .withUser(users.username("max3").password("pass3").roles("role1", "role3"));
+
+         */
     }
 
     @Override
@@ -27,16 +37,18 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 //.anyRequest().authenticated()
-                .antMatchers("/").hasRole("role1")
-                .antMatchers("/leaders/**").hasRole("role2")
-                .antMatchers("/systems/**").hasRole("role3")
+                .antMatchers("/").hasRole("EMPLOYEE")
+                .antMatchers("/leaders/**").hasRole("MANAGER")
+                .antMatchers("/systems/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/showMyLoginPage")
                 .loginProcessingUrl("/authenticateUser")
                 .permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/access-denied");
 
     }
 }

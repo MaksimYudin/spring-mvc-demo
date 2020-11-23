@@ -20,7 +20,7 @@
 <div sec:authorize="isAuthenticated()">
     Text visible only to authenticated users.
 </div>
-<div sec:authorize="hasRole('ROLE_rol1')">
+<div sec:authorize="hasRole('ROLE_EMPLOYEE')">
     This content is only shown to administrators.
 </div>
 
@@ -69,9 +69,13 @@
 <br/>
 
 <p>
-    <a href="/leaders">only for Leaders</a>
+    <div sec:authorize="hasRole('ROLE_MANAGER')">
+        <a href="/leaders">only for Leaders</a>
+    </div>
     <br/>
-    <a href="/systems">only for Admins</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/systems">only for Admins</a>
+    </div>
 </p>
 
 </body>
