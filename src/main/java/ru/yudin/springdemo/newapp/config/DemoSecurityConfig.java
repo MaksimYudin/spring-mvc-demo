@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -21,6 +22,13 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.jdbcAuthentication().dataSource(securityDataSource);
+
+        /*auth.jdbcAuthentication().dataSource(securityDataSource)
+                .usersByUsernameQuery("select username, password, enabled"
+                        + " from users where username=?")
+                .authoritiesByUsernameQuery("select username, authority "
+                        + "from authorities where username=?")
+                .passwordEncoder(new BCryptPasswordEncoder());*/
         /*
         User.UserBuilder users = User.withDefaultPasswordEncoder();
 
