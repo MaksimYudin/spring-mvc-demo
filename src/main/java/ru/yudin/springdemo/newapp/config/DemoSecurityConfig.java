@@ -1,7 +1,9 @@
 package ru.yudin.springdemo.newapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,10 +15,14 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@PropertySource(value = "classpath:spring.properties")
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource securityDataSource;
+
+    @Value("${security.enable-csrf}")
+    private boolean csrfEnabled;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -57,6 +63,9 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
+
+        if (!csrfEnabled)
+            http.csrf().disable();
 
     }
 }
